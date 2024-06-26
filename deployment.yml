@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readcrew
+  namespace: eksapp
+  labels:
+    app: readcrew
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: readcrew
+  template:
+    metadata:
+      labels:
+        app: readcrew
+    spec:
+      containers:
+        - name: readcrew
+          image: 265083127752.dkr.ecr.ap-south-1.amazonaws.com/ecr-read-crew-repo:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
